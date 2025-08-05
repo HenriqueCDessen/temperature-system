@@ -3,7 +3,8 @@ version: "3.9"
 services:
   service-a:
     build:
-      context: ./service-a
+      context: .
+      dockerfile: service-a/Dockerfile
     container_name: service-a
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
@@ -16,7 +17,8 @@ services:
 
   service-b:
     build:
-      context: ./service-b
+      context: .
+      dockerfile: service-b/Dockerfile
     container_name: service-b
     environment:
       - WEATHER_API_KEY=7f98edc19bed4f48b1e232631253107
@@ -33,7 +35,7 @@ services:
       - ./otel-collector/config.yaml:/etc/otelcol-contrib/config.yaml
     command: ["--config=/etc/otelcol-contrib/config.yaml"]
     ports:
-      - "4318:4318"  
+      - "4318:4318"
       - "55681:55681"
     depends_on:
       - zipkin

@@ -1,4 +1,4 @@
-module github.com/henriquedessen/temperature-system
+module temperature-system
 
 go 1.24.5
 
